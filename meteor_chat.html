@@ -1,0 +1,73 @@
+<head>
+  <title>Meteor chat</title>
+</head>
+ 
+<body>
+  <div class="navbar navbar-default">
+    <div class="nav-collapse">
+      <div class="container">
+        <ul class='nav navbar-nav' >
+          <li>
+            <h3>Meteor chat</h3>
+          </li>
+        </ul>
+        <ul class='nav navbar-nav navbar-right' >
+          {{> loginButtons}}
+        </ul>
+      </div>
+    </div>
+  </div> 
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      {{#if currentUser}}
+        <form class="new-room">
+          <input type="text" name="text" class="text form-control" placeholder="Add new room" />
+        </form>
+        <ul class='rooms'>
+          {{#each rooms}}
+            {{> room}}
+          {{/each}}
+        </ul>
+      {{/if}} 
+    </ul>
+  </div>
+</body>
+
+<template name="room">
+  <li class='room'>
+    <div class='name'>
+      <span class="name"><a href="/rooms/{{_id}}">{{name}}</a></span>
+    </div>
+    <div class='buttons'>
+      <button class="delete btn btn-danger">&times;</button>
+    </div>
+  </li>
+</template>
+
+<template name="roomPage">
+  <div id="main-wrapper">
+    <div class="container">
+      <form class="new-message">
+        <input type="text" name="message" class="text form-control" placeholder="Your message" />
+      </form>
+      <div class='messages'>
+        {{#each messages}}
+          {{> message}}
+        {{/each}}
+      </div>
+     </div>
+  </div>
+</template>
+
+<template name="message">
+  <div class='message'>
+    <span class='owner'>{{owner_name}}</span>
+    <span class='text'>{{name}}</span>
+  </div>
+</template>
+
+<template name="home">
+  <div>
+    <h1> Hello, Meteor CHAT!!! </h1>
+  </div>
+</template>
