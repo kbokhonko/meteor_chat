@@ -12,6 +12,11 @@
           </li>
         </ul>
         <ul class='nav navbar-nav navbar-right' >
+          {{#if currentUser}}
+            <li>
+              <img class='avatar' src="{{currentUser.profile.picture}}" width="35" />
+            </li>
+          {{/if}} 
           {{> loginButtons}}
         </ul>
       </div>
@@ -24,6 +29,9 @@
           <input type="text" name="text" class="text form-control" placeholder="Add new room" />
         </form>
         <ul class='rooms'>
+          <li>
+            ROOMS
+          </li>
           {{#each rooms}}
             {{> room}}
           {{/each}}
@@ -39,7 +47,9 @@
       <span class="name"><a href="/rooms/{{_id}}">{{name}}</a></span>
     </div>
     <div class='buttons'>
-      <button class="delete btn btn-danger">&times;</button>
+      {{#if isOwner owner}}
+        <button class="delete btn btn-danger">&times;</button>
+      {{/if}}
     </div>
   </li>
 </template>
@@ -61,7 +71,7 @@
 
 <template name="message">
   <div class='message'>
-    <span class='owner'>{{owner_name}}</span>
+    <span class='owner'><img src="{{owner.profile.picture}}" width="15" />{{owner.profile.name}}</span>
     <span class='text'>{{name}}</span>
   </div>
 </template>

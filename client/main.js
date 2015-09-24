@@ -8,6 +8,12 @@ Template.body.helpers({
   },
 });
 
+Template.room.helpers({
+  isOwner: function (id) {
+    return Meteor.user()._id === id
+  }
+});
+
 Template.roomPage.helpers({
   messages:function(){
     return Messages.find({ room: window.currentRoom });

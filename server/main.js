@@ -13,10 +13,10 @@ Meteor.methods({
   },
 
   "insertMessage" : function (value, curroom) {
+    console.log(Meteor.user());
     Messages.insert({
       name: value,
-      owner_name: Meteor.user().emails[0].address,
-      owner: Meteor.userId(),
+      owner: Meteor.user(),
       room: curroom
     });
   },
